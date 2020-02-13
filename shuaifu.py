@@ -4,3 +4,7 @@
 
 def say():
     print('我信仰帅副!')
+
+
+def translate():
+    pass
