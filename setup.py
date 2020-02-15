@@ -5,7 +5,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='shuaifu',
-    version='0.5.0',
+    version='0.6.0',
     description='Shuaifu Language',
     long_description=open('README.md',encoding='utf-8').read(),
     long_description_content_type="text/markdown",

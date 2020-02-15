@@ -28,7 +28,7 @@ _valid_words = [
 ]
 
 
-def say():
+def believe():
     print('我信仰帅副!')
 
 
@@ -63,4 +63,11 @@ def translate(text, add_blank=True):
 
 
 def version():
-    return "0.5.0"
+    return "0.6.0"
+
+
+fjyi = translate
+
+bjbf = version
+
+xbyh = believe
