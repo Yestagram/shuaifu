@@ -27,8 +27,23 @@ _valid_words = [
     "zui", "cui", "sui", "nv", "lv"
 ]
 
+__version__ = "0.7.0"
 
-def believe():
+
+def believe(func=None):
+    if callable(func):
+        print("函数{0}受到了感化,函数{0}开始信仰帅副了!".format(func.__name__))
+
+        def do_work(*args):
+            print("函数{0}沐浴教旨,努力工作,终于有了结果".format(func.__name__))
+            return func(*args)
+
+        return do_work
+    else:
+        print('我信仰帅副!')
+
+
+def say():
     print('我信仰帅副!')
 
 
@@ -62,12 +77,14 @@ def translate(text, add_blank=True):
     return _result
 
 
-def version():
-    return "0.6.0"
+def get_version():
+    return __version__
 
 
 fjyi = translate
 
-bjbf = version
+bjbf = get_version
 
 xbyh = believe
+
+uo = say

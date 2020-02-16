@@ -2,12 +2,13 @@
 # coding=utf-8
 
 from setuptools import setup, find_packages
+import shuaifu as sf
 
 setup(
     name='shuaifu',
-    version='0.6.0',
+    version=sf.__version__,
     description='Shuaifu Language',
-    long_description=open('README.md',encoding='utf-8').read(),
+    long_description=open('README.md', encoding='utf-8').read(),
     long_description_content_type="text/markdown",
     author='IvanLuLyf',
     author_email='me@ivanlu.cn',
