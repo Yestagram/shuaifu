@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # coding=utf-8
+from datetime import datetime
 
 _first_letter = {
     "b": "b", "c": "c", "d": "d", "f": "f", "g": "g", "h": "h", "i": "ch", "j": "j", "k": "k", "l": "l",
@@ -27,7 +28,7 @@ _valid_words = [
     "zui", "cui", "sui", "nv", "lv"
 ]
 
-__version__ = "0.7.0"
+__version__ = "0.8.0"
 
 
 def believe(func=None):
@@ -45,6 +46,13 @@ def believe(func=None):
 
 def say():
     print('我信仰帅副!')
+
+
+def holidays(start=2000, end=100):
+    for i in range(end):
+        day = datetime.strptime("{0}1214".format(start + i), "%Y%m%d").date()
+        if day.weekday() in [5, 6]:
+            yield day
 
 
 def translate(text, add_blank=True):
@@ -88,3 +96,5 @@ bjbf = get_version
 xbyh = believe
 
 uo = say
+
+jxqi = holidays

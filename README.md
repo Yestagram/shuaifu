@@ -27,6 +27,38 @@ print(shuaifu.bjbf()) # uuiubjbf
 print(shuaifu.fjyi('woxbyhukfu!')) # fjyidcpbyb
 ```
 
+### Get Holidays
+
+```python
+import shuaifu
+
+if __name__ == '__main__':
+    startYear = 2000
+    count = 10
+    for i in shuaifu.holidays(startYear,count):
+        print(i)
+```
+
+or
+
+```python
+import shuaifu
+
+if __name__ == '__main__':
+    kdui = 2000
+    uull = 10
+    for i in shuaifu.jxqi(kdui,uull):
+        print(i)
+```
+
+the out put will be
+
+```text
+2002-12-14
+2003-12-14
+2008-12-14
+```
+
 ### Advanced Usage
 
 ```python
