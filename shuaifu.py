@@ -30,7 +30,7 @@ _valid_words = [
     "zui", "cui", "sui", "nv", "lv"
 ]
 
-__version__ = "0.9.0"
+__version__ = "1.0.0"
 
 
 def believe(func=None):
@@ -39,8 +39,25 @@ def believe(func=None):
 
         def do_work(*args):
             try:
+                _flag = False
+                for i in range(func.__code__.co_argcount):
+                    vn = func.__code__.co_varnames[i]
+                    if vn in func.__annotations__ and not isinstance(args[i], func.__annotations__[vn]):
+                        if not _flag:
+                            print("函数{0}开始工作了,但是帅副觉得有点问题:\n".format(func.__name__))
+                        _flag = True
+                        print(
+                            "帅副觉得给\033[36m{0}\033[0m类型的{1}传了个\033[36m{2}\033[0m的类型的值\033[31m{3}\033[0m就很扯;".format(
+                                func.__annotations__[vn].__name__,
+                                vn,
+                                type(args[i]).__name__,
+                                args[i],
+                            ))
                 res = func(*args)
-                print("函数{0}沐浴教旨,努力工作,终于有了结果".format(func.__name__))
+                if _flag:
+                    print("\n但是帅副依然不离不弃,在他的关怀下,函数\033[32m{0}\033[0m依然得出了结果!".format(func.__name__))
+                else:
+                    print("函数{0}沐浴教旨,努力工作,终于有了结果!".format(func.__name__))
                 return res
             except Exception as e:
                 print('函数{0}犯了"{1}"的低级错误'.format(func.__name__, str(e)))
