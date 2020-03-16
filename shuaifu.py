@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # coding=utf-8
+import traceback
 from datetime import datetime
 
 _first_letter = {
@@ -36,8 +37,21 @@ def believe(func=None):
         print("函数{0}受到了感化,函数{0}开始信仰帅副了!".format(func.__name__))
 
         def do_work(*args):
-            print("函数{0}沐浴教旨,努力工作,终于有了结果".format(func.__name__))
-            return func(*args)
+            try:
+                res = func(*args)
+                print("函数{0}沐浴教旨,努力工作,终于有了结果".format(func.__name__))
+                return res
+            except Exception as e:
+                print('函数{0}犯了"{1}"的低级错误'.format(func.__name__, str(e)))
+                err_origin = traceback.extract_tb(e.__traceback__)
+                if err_origin[1] is not None:
+                    print('帅副一阵见血地指出是在文件"{0}"第{1}行的"{2}"处发生了错误"'.format(
+                        err_origin[1].filename,
+                        err_origin[1].lineno,
+                        err_origin[1].line,
+                    ))
+                else:
+                    print("帅副对于这种不明所以的错误感到十分愤慨.")
 
         return do_work
     else:
