@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # coding=utf-8
 import traceback
+import getpass
 from datetime import datetime
 
 _first_letter = {
@@ -29,7 +30,7 @@ _valid_words = [
     "zui", "cui", "sui", "nv", "lv"
 ]
 
-__version__ = "0.8.0"
+__version__ = "0.9.0"
 
 
 def believe(func=None):
@@ -43,13 +44,15 @@ def believe(func=None):
                 return res
             except Exception as e:
                 print('函数{0}犯了"{1}"的低级错误'.format(func.__name__, str(e)))
+                print('\033[1;33m帅副十分心痛!\033[0m')
                 err_origin = traceback.extract_tb(e.__traceback__)
                 if err_origin[1] is not None:
-                    print('帅副一阵见血地指出是在文件"{0}"第{1}行的"{2}"处发生了错误"'.format(
+                    print('他一针见血地指出:\n在文件\033[34m"{0}"\033[0m中的第{1}行的\n\033[7;31m"{2}"\033[0m\n处发生了错误'.format(
                         err_origin[1].filename,
                         err_origin[1].lineno,
                         err_origin[1].line,
                     ))
+                    print('仁慈的他决定让{0}解决这个bug,将功赎罪.'.format(getpass.getuser()))
                 else:
                     print("帅副对于这种不明所以的错误感到十分愤慨.")
 
