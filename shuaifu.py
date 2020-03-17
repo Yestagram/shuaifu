@@ -30,7 +30,7 @@ _valid_words = [
     "zui", "cui", "sui", "nv", "lv"
 ]
 
-__version__ = "1.1.0"
+__version__ = "1.2.0"
 
 
 def believe(func=None):
@@ -41,8 +41,23 @@ def believe(func=None):
             try:
                 _flag = False
                 _argc = len(args)
-                if func.__code__.co_argcount > _argc + len(func.__defaults__) or func.__code__.co_argcount < _argc:
-                    print("函数{0}开始工作了,但是帅副指出参数的个数有误,并阻止了函数{0}的工作".format(func.__name__))
+                if func.__code__.co_argcount > _argc + len(func.__defaults__):
+                    print("函数{0}开始工作了,但是帅副指出函数缺少了{1}个参数,并阻止了函数{0}的工作".format(
+                        func.__name__,
+                        func.__code__.co_argcount - _argc - len(func.__defaults__),
+                    ))
+                    _flag = True
+                if func.__code__.co_argcount < _argc:
+                    print("函数{0}开始工作了,但是帅副指出函数多传了{1}个参数,并阻止了函数{0}的工作".format(
+                        func.__name__,
+                        _argc - func.__code__.co_argcount,
+                    ))
+                    _flag = True
+                if _flag:
+                    if func.__doc__:
+                        print("帅副觉得你不适合写代码,但是他还是贴心的给你找来了函数的文档{0}".format(func.__doc__))
+                    else:
+                        print("帅副虽然觉得你不适合写代码,但是这个函数的作者居然不写文档,帅副对于这种行为十分愤慨.")
                     return None
                 for i in range(_argc):
                     vn = func.__code__.co_varnames[i]
