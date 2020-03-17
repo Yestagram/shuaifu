@@ -30,7 +30,7 @@ _valid_words = [
     "zui", "cui", "sui", "nv", "lv"
 ]
 
-__version__ = "1.0.0"
+__version__ = "1.1.0"
 
 
 def believe(func=None):
@@ -40,7 +40,11 @@ def believe(func=None):
         def do_work(*args):
             try:
                 _flag = False
-                for i in range(func.__code__.co_argcount):
+                _argc = len(args)
+                if func.__code__.co_argcount > _argc + len(func.__defaults__) or func.__code__.co_argcount < _argc:
+                    print("函数{0}开始工作了,但是帅副指出参数的个数有误,并阻止了函数{0}的工作".format(func.__name__))
+                    return None
+                for i in range(_argc):
                     vn = func.__code__.co_varnames[i]
                     if vn in func.__annotations__ and not isinstance(args[i], func.__annotations__[vn]):
                         if not _flag:
