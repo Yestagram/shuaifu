@@ -30,7 +30,7 @@ _valid_words = [
     "zui", "cui", "sui", "nv", "lv"
 ]
 
-__version__ = "1.2.0"
+__version__ = "1.3.0"
 
 
 def believe(func=None):
@@ -41,10 +41,11 @@ def believe(func=None):
             try:
                 _flag = False
                 _argc = len(args)
-                if func.__code__.co_argcount > _argc + len(func.__defaults__):
+                _def_len = len(func.__defaults__) if func.__defaults__ is not None else 0
+                if func.__code__.co_argcount > _argc + _def_len:
                     print("函数{0}开始工作了,但是帅副指出函数缺少了{1}个参数,并阻止了函数{0}的工作".format(
                         func.__name__,
-                        func.__code__.co_argcount - _argc - len(func.__defaults__),
+                        func.__code__.co_argcount - _argc - _def_len,
                     ))
                     _flag = True
                 if func.__code__.co_argcount < _argc:
@@ -82,7 +83,7 @@ def believe(func=None):
                 print('函数{0}犯了"{1}"的低级错误'.format(func.__name__, str(e)))
                 print('\033[1;33m帅副十分心痛!\033[0m')
                 err_origin = traceback.extract_tb(e.__traceback__)
-                if err_origin[1] is not None:
+                if len(err_origin) > 1 and err_origin[1] is not None:
                     print('他一针见血地指出:\n在文件\033[34m"{0}"\033[0m中的第{1}行的\n\033[7;31m"{2}"\033[0m\n处发生了错误'.format(
                         err_origin[1].filename,
                         err_origin[1].lineno,
