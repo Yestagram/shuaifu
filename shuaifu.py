@@ -30,7 +30,7 @@ _valid_words = [
     "zui", "cui", "sui", "nv", "lv"
 ]
 
-__version__ = "1.3.0"
+__version__ = "1.4.0"
 
 
 def believe(func=None):
