@@ -1,6 +1,12 @@
 # Shuaifu
 Yet another language
 
+[![License](https://img.shields.io/github/license/yestagram/shuaifu.svg?color=blue&style=flat-square)](https://github.com/yestagram/shuaifu/blob/master/LICENSE)
+[![PyPI](https://img.shields.io/pypi/v/shuaifu.svg?color=3776AB&logo=pypi&logoColor=white&style=flat-square)](https://pypi.org/project/shuaifu/)
+![PyPI - Downloads](https://img.shields.io/pypi/dm/shuaifu.svg?logo=python&logoColor=white&style=flat-square)
+![Verify](https://img.shields.io/badge/Shuaifu-Verify-brightgreen.svg?style=flat-square)
+
+
 ## Install
 
 ```shell
